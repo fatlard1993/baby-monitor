@@ -1,0 +1,10 @@
+{
+  "lang": "en-US",
+  "orientation": "any",
+  "display": "standalone",
+  "theme_color": "#BADA55",
+  "background_color": "#000",
+  "name": "baby-monitor",
+  "short_name": "baby-monitor",
+  "start_url": "/home"
+}

@@ -1,0 +1,38 @@
+{
+	"name": "baby-monitor",
+	"version": "1.0.0",
+	"main": "server/index.js",
+	"description": "Yet another raspberry pi baby monitor",
+	"author": "justfatlard",
+	"license": "ISC",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/fatlard1993/baby-monitor.git"
+	},
+	"bugs": {
+		"url": "https://github.com/fatlard1993/baby-monitor/issues"
+	},
+	"homepage": "https://github.com/fatlard1993/baby-monitor#readme",
+	"eslintConfig": {
+		"extends": "rules"
+	},
+	"devDependencies": {
+		"eslint-config-rules": "github:fatlard1993/eslint-config-rules",
+		"babel-eslint": "^10.1.0",
+		"eslint": "^6.8.0"
+	},
+	"dependencies": {
+		"dom": "github:fatlard1993/dom#2.x.x",
+		"find-root": "^1.1.0",
+		"http-server": "github:fatlard1993/http-server#4.x.x",
+		"log": "github:fatlard1993/log#2.x.x",
+		"socket-client": "github:fatlard1993/socket-client#2.x.x",
+		"websocket-server": "github:fatlard1993/websocket-server#2.x.x",
+		"ws": "^7.3.1",
+		"ws-avc-player": "github:matijagaspar/ws-avc-player",
+		"yargs": "^15.3.1"
+	}
+}
