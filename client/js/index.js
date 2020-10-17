@@ -1,12 +1,17 @@
-// includes log dom socket-client ws-avc-player
-// babel
-/* global log dom socketClient WSAvcPlayer */
+import Log from 'log';
+import dom from 'dom';
+import socketClient from 'socket-client';
+import WSAvcPlayer from 'ws-avc-player';
+
+const log = new Log();
 
 const babyMonitor = {
 	init: function(){
 		socketClient.init();
 
 		socketClient.on('init', (data) => {
+			log()('Connected');
+
 			this.draw(data);
 		});
 

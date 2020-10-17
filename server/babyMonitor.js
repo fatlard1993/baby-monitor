@@ -1,7 +1,7 @@
 const path = require('path');
 const spawn = require('child_process').spawn;
 
-const log = require('log');
+const log = new (require('log'))({ tag: 'baby-monitor' });
 const SocketServer = require('websocket-server');
 const AvcServer = require('ws-avc-player/lib/server');
 const WebSocket = require('ws');

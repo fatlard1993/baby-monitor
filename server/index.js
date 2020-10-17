@@ -13,13 +13,15 @@ process.chdir(rootFolder);
 yargs.alias({
 	h: 'help',
 	v: 'verbosity',
-	ver: 'version'
+	ver: 'version',
+	p: 'port'
 });
 
 yargs.boolean(['h', 'ver']);
 
 yargs.default({
-	v: 1
+	v: 1,
+	p: 8080
 });
 
 yargs.describe({
@@ -27,23 +29,14 @@ yargs.describe({
 	v: '<level>'
 });
 
-var opts = yargs.argv;
+const args = yargs.argv;
 
-opts.rootFolder = rootFolder;
+['_', '$0', 'v', 'p'].forEach((item) => { delete args[item]; });
 
-delete opts._;
-delete opts.$0;
-delete opts.h;
-delete opts.v;
+const opts = Object.assign(args, { args: Object.assign({}, args), rootFolder, verbosity: Number(args.verbosity) });
 
-opts.verbosity = Number(opts.verbosity);
+const log = new (require('log'))({ tag: 'baby-monitor', color: true, verbosity: opts.verbosity });
 
-//log args polyfill
-process.env.DBG = opts.verbosity;
-process.env.COLOR = true;
-
-const log = require('log');
-
-log(1)('[Baby Monitor] Options', opts);
+log(1)('Options', opts);
 
 (require('./babyMonitor')).init(opts);
