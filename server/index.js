@@ -10,6 +10,10 @@ function rootPath(){ return path.join(rootFolder, ...arguments); }
 
 process.chdir(rootFolder);
 
+yargs.parserConfiguration({
+	'camel-case-expansion': false
+});
+
 yargs.alias({
 	h: 'help',
 	v: 'verbosity',
