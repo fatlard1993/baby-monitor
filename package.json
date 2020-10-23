@@ -1,6 +1,6 @@
 {
 	"name": "baby-monitor",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"main": "server/index.js",
 	"description": "Yet another raspberry pi baby monitor",
 	"author": "justfatlard",
