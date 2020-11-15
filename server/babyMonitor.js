@@ -1,5 +1,6 @@
 const path = require('path');
-const spawn = require('child_process').spawn;
+const childProcess = require('child_process');
+const { spawn, execSync } = childProcess;
 
 const log = new (require('log'))({ tag: 'baby-monitor' });
 const SocketServer = require('websocket-server');
@@ -29,6 +30,11 @@ const babyMonitor = {
 			}
 		}
 	},
+	inactivityReboot: function(){
+		setTimeout(function(){
+			execSync('reboot');
+		}, 60 * 1000);
+	},
 	init: function(opts){
 		this.opts = Object.assign(this.opts, opts);
 
@@ -51,7 +57,10 @@ const babyMonitor = {
 			log()('starting raspivid');
 
 			streamer = spawn('raspivid', this.opts.camera.raspivid());
-			streamer.on('close', (code) => { log()(code); streamer = null; });
+			streamer.on('close', (code) => {
+				log()(code);
+				streamer = null;
+			});
 
 			streamer.stderr.on('data', (data) => {
 				log.error(`stderr: ${data}`);
@@ -73,6 +82,8 @@ const babyMonitor = {
 				log()('stopping raspivid');
 
 				streamer.kill('SIGTERM');
+
+				inactivityReboot();
 			}
 		});
 	},
